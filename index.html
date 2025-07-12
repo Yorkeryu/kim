@@ -166,7 +166,6 @@
             body {
                 background-image: url('IMG_0840.png');
                 background-size: cover;
-                background-attachment: fixed;
             }
         }
 
@@ -175,7 +174,6 @@
             body {
                 background-image: url('IMG_0841_2.png');
                 background-size: cover;
-                background-attachment: fixed;
             }
         }
     </style>
@@ -192,7 +190,7 @@
         </div>
         </div>
     </div>
-
+    <audio id="myAudio" src="29370813640-1-192.mp3" controls></audio>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         const centerEmoji = document.getElementById('center-emoji');
@@ -237,6 +235,10 @@ window.addEventListener('resize', detectOrientation);
 if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', detectOrientation);
 }
+window.addEventListener('load', function() {
+    var audio = document.getElementById('myAudio');
+    audio.play();
+  });
     </script>
 </body>
 </html>
