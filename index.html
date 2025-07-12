@@ -66,6 +66,9 @@
             position: relative;
             z-index: 2;
             filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            outline: none;
         }
         
         .emoji:hover {
@@ -142,10 +145,16 @@
         @media (max-width: 600px) {
             .emoji {
                 font-size: 4rem;
+                -webkit-user-select: none;
+                user-select: none;
+                outline: none;
             }
             
             .emoji:nth-child(2) {
                 font-size: 5rem;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+                outline: none;
             }
             
             h1 {
@@ -169,21 +178,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const centerEmoji = document.getElementById('center-emoji');
-            const allEmojis = document.querySelectorAll('.emoji');
-            
-            centerEmoji.addEventListener('click', () => {
-                // 添加跳跃动画类
-                allEmojis.forEach(emoji => {
-                    emoji.classList.add('jump');
-                    
-                    // 300毫秒后移除跳跃类，为下次点击做准备
-                    setTimeout(() => {
-                        emoji.classList.remove('jump');
-                    }, 300);
-                });
+        const centerEmoji = document.getElementById('center-emoji');
+        const allEmojis = document.querySelectorAll('.emoji');
+        let isAnimating = false;
+
+        centerEmoji.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            allEmojis.forEach(emoji => {
+                emoji.classList.add('jump');
             });
+
+        // 添加一次性事件监听器
+            centerEmoji.addEventListener('animationend', () => {
+                allEmojis.forEach(emoji => {
+                    emoji.classList.remove('jump');
+                });
+                isAnimating = false;
+            }, { once: true });
         });
+    });
     </script>
 </body>
 </html>
