@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✋😭🤚将军的恩情还不完✋😭🤚</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .description {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .emoji-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 200px;
+            margin: 50px 0;
+        }
+        
+        .emoji {
+            font-size: 6rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+        
+        .emoji:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 左侧Emoji */
+        .emoji:nth-child(1) {
+            transform: translateY(-20px) rotate(-10deg);
+            margin-right: 0px;
+        }
+        
+        /* 中间Emoji */
+        .emoji:nth-child(2) {
+            font-size: 7rem;
+            z-index: 3;
+        }
+        
+        /* 右侧Emoji */
+        .emoji:nth-child(3) {
+            transform: translateY(-20px) rotate(10deg);
+            margin-left: 0px;
+        }
+        
+        /* 跳跃动画 */
+        .jump {
+            animation: jump 0.5s ease;
+        }
+        
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-60px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            color: white;
+        }
+        
+        .instructions h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .instructions p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .emoji {
+                font-size: 4rem;
+            }
+            
+            .emoji:nth-child(2) {
+                font-size: 5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: black;">✋😭🤚将军的恩情还不完✋😭🤚</h1>
+        <p class="description"style="color: black;">点击中间的😭表情欢迎将军</p >
+        
+        <div class="emoji-container">
+            <div class="emoji">✋</div>
+            <div class="emoji" id="center-emoji">😭</div>
+            <div class="emoji">🤚</div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const centerEmoji = document.getElementById('center-emoji');
+            const allEmojis = document.querySelectorAll('.emoji');
+            
+            centerEmoji.addEventListener('click', () => {
+                // 添加跳跃动画类
+                allEmojis.forEach(emoji => {
+                    emoji.classList.add('jump');
+                    
+                    // 300毫秒后移除跳跃类，为下次点击做准备
+                    setTimeout(() => {
+                        emoji.classList.remove('jump');
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
