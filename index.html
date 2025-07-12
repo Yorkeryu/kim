@@ -19,9 +19,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             padding: 20px;
-            background-image: url('IMG_0840.png');
-            background-size: cover;
-            background-attachment: fixed;
         }
         
         .container {
@@ -164,6 +161,21 @@
                 font-size: 2rem;
             }
         }
+        /* 横屏背景 */
+        @media (orientation: landscape) {
+            body {
+                background-image: url('IMG_0840.png');
+                background-size: cover;
+            }
+        }
+
+        /* 竖屏背景 */
+        @media (orientation: portrait) {
+            body {
+                background-image: url('IMG_0841_2.png');
+                background-size: cover;
+            }
+        }
     </style>
 </head>
 <body>
@@ -202,6 +214,27 @@
             }, { once: true });
         });
     });
+    function detectOrientation() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    if (width > height) {
+        // 横屏模式
+    } else {
+        // 竖屏模式
+    }
+}
+
+// 初始检测
+detectOrientation();
+
+// 监听窗口大小变化（包括方向变化）
+window.addEventListener('resize', detectOrientation);
+
+// 监听设备方向变化（适用于移动设备）
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', detectOrientation);
+}
     </script>
 </body>
 </html>
